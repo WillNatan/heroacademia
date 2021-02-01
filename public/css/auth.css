@@ -1,0 +1,14 @@
+body{
+    background: url("../bg-02.jpg")no-repeat;
+    background-size: cover;
+    object-fit: cover;
+}
+
+.login-form{
+    max-width: 400px;
+    background-color: #FFF;
+    padding:30px;
+    margin:0 auto;
+    margin-top: 150px;
+    border-radius: 16px;
+}

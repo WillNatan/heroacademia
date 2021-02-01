@@ -1,0 +1,78 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header">
+					<h3>Missions disponibles</h3>
+				</div>
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									Nom mission
+								</th>
+								<th>Etat</th>
+								<th>heros</th>
+							</tr>
+
+						</thead>
+						<tbody>
+							{% for mission in missions %}
+								<tr>
+									<td>{{ mission.nom }}</td>
+									<td>{{ mission.etat == 2 ? "Terminée":mission.etat == 0 ?"Disponible":mission.etat == 1 ?"En cours" }}</td>
+									<td>
+										<ul>
+											{% for heros in mission.heros %}
+												<li>{{ heros.nom }}
+													
+												</li>
+											{% endfor %}
+										</ul>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card">
+		<div class="card-header">
+			<h3>Héros disponibles</h3>
+		</div>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Nom du héros
+						</th>
+                        <th>Actions</th>
+					</tr>
+
+				</thead>
+                <tbody>
+                    {% for heros in heros %}
+                         {% if heros.user|length == 0 %}
+						 	<tr>
+                            <td>{{ heros.nom }}</td>
+							<td><a href="{{ path('admin_affect',{'id':heros.id}) }}" class="btn btn-success">Engager
+													</a></td>
+                         </tr>
+						 {% endif %}
+                    {% endfor %}
+                </tbody>
+			</table>
+		</div>
+	</div>
+		</div>
+	</div>
+{% endblock %}
